@@ -46,40 +46,15 @@ Deployed on a curated corpus of **662 full-text articles**, MACS-BiC achieves an
 
 MACS-BiC is organized as **two managerial agents** that orchestrate **three specialist worker agents**, integrated with **six domain-specific tools**.
 
-```mermaid
-flowchart TD
-    User([User-defined domain]) --> Planner
-    subgraph Managerial["Managerial layer"]
-        Planner["Planner Agent<br/>(GPT-4o)"]
-        Coordinator["Coordinator Agent<br/>(GPT-4o)"]
-    end
-    Planner -- "research plan (JSON)" --> Coordinator
-    Coordinator -- "decoupled task channel" --> Workers
+<div align="center">
 
-    subgraph Workers["Worker layer"]
-        Reader["Paper Reader Agent"]
-        Writer["Data Writer Agent"]
-        Judger["Judger Agent<br/>(rule + LLM)"]
-    end
+**Figure 1.** Framework and workflow of the MACS-BiC multi-agent comprehension system.
 
-    subgraph Tools["Integrated tools"]
-        T1[Retrieval<br/>WoS API]
-        T2[Paper Download]
-        T3[Paper Parsing<br/>MinerU]
-        T4[Image-to-Text<br/>Gemini 2.5 Pro]
-        T5[Carbon Footprint]
-        T6[Dataset Construction]
-    end
+[<img src="./images/agent1.png" alt="MACS-BiC multi-agent system architecture" width="920">](./images/agent1.pdf)
 
-    Planner -.uses.-> T1
-    Coordinator -.dispatches.-> T2 & T3 & T6
-    Reader -.uses.-> T4
-    Writer -.uses.-> T6
-    Coordinator -.optional.-> T5
+*Click the figure for the vector PDF ([`images/agent1.pdf`](./images/agent1.pdf)). The PNG above is an inline raster preview.*
 
-    Workers --> Output[(High-fidelity<br/>structured dataset<br/>.xlsx + .jsonl)]
-    Judger -- "Rejected → re-run" --> Coordinator
-```
+</div>
 
 ### 3.1 Agents
 
@@ -142,6 +117,9 @@ See the manuscript and `Supplementary Data 4` for the complete dataset and figur
 ```
 MACS-BiC/
 ├── README.md
+├── images/
+│   ├── agent1.pdf                # Figure 1 (vector, manuscript-style)
+│   └── agent1.png                # Raster preview for GitHub README
 └── agent/
     ├── extraction.py                       # Production entry point (legacy / scripted run)
     ├── extraction_without_format.py        # Ablation: w/o format normalization
