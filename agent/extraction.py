@@ -28,19 +28,8 @@ def get_data():
         all_data.append(line['doi'].replace("/", "_"))
         
     # Create a DataFrame from the combined data
-    df_2000 = all_data[:230]
     question_list = []
-    doi_list = [
-        '10.1016_j.cemconcomp.2024.105867',
-        '10.1016_j.conbuildmat.2019.117338',
-        '10.1016_j.conbuildmat.2020.120688',
-        '10.1016_j.conbuildmat.2020.120723',
-        '10.1617_s11527-025-02573-5',
-        # '10.1002_ep.13440',
-        # '10.1007_s11043-025-09789-6',
-    ]
-    for doi in df_2000:
-        if doi not in doi_list:
+    for doi in all_data:
             question_list.append({
                 "doi": doi, 
                 "pdf": os.path.join(args.dataset_name, f"{doi}.pdf"), 
