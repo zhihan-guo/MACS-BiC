@@ -14,7 +14,7 @@ Six tools (all under ``multi_agent/tools/``):
 
 Typical entry-point usage::
 
-    mas = MultiAgentSystem(api_key="sk-...", wos_api_key="...", gemini_api_key="...")
+    mas = MultiAgentSystem(api_key="...", wos_api_key="...", gemini_api_key="...")
     result = mas.run(domain="biochar concrete carbon footprint", workspace="./run_001")
 """
 
