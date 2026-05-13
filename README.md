@@ -219,7 +219,7 @@ pip install --upgrade "mineru[core]"           # PDF parsing
 ### 6.3 Configure credentials
 
 ```bash
-export OPENAI_API_KEY="sk-..."                  # GPT-4o (and default for Gemini proxy)
+export OPENAI_API_KEY="..."                  # GPT-4o (and default for Gemini proxy)
 export WOS_API_KEY="..."                        # Web of Science
 export GEMINI_API_KEY="..."                     # Optional; falls back to OPENAI_API_KEY
 ```
