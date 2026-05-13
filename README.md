@@ -50,9 +50,9 @@ MACS-BiC is organized as **two managerial agents** that orchestrate **three spec
 
 **Figure 1.** Framework and workflow of the MACS-BiC multi-agent comprehension system.
 
-[<img src="./images/agent1.png" alt="MACS-BiC multi-agent system architecture" width="920">](./images/agent1.pdf)
+[<img src="./images/roadmap.png" alt="MACS-BiC multi-agent system architecture" width="920">](./images/roadmap.pdf)
 
-*Click the figure for the vector PDF ([`images/agent1.pdf`](./images/agent1.pdf)). The PNG above is an inline raster preview.*
+*Click the figure for the vector PDF ([`images/agent1.pdf`](./images/roadmap.pdf)). The PNG above is an inline raster preview.*
 
 </div>
 
