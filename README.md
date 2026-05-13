@@ -425,7 +425,7 @@ We are grateful to the maintainers of the open-source tools on which MACS-BiC de
 ## 13. Contact
 
 - **Shuai Zou** &mdash; [`frank-s.zou@connect.polyu.hk`](mailto:frank-s.zou@connect.polyu.hk) &mdash; Department of Civil and Environmental Engineering, The Hong Kong Polytechnic University
-- **Zhihan Guo** &mdash; Department of Computer Science and Engineering, The Chinese University of Hong Kong
+- **Zhihan Guo** &mdash; [`zhguo22@cse.cuhk.edu.hk`](mailto:zhguo22@cse.cuhk.edu.hk) &mdash; Department of Computer Science and Engineering, The Chinese University of Hong Kong
 
 For questions, bug reports, or feature requests, please open an issue on this repository.
 
