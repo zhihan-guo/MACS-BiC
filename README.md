@@ -28,7 +28,7 @@ Deployed on a curated corpus of **662 full-text articles**, MACS-BiC achieves an
 
 > This repository accompanies the manuscript<br>
 > **"A multi-agent LLM system for high-fidelity knowledge extraction in sustainable construction materials"**<br>
-> *Shuai Zou\*, Zhihan Guo\*, Yankai Chen, Jianzhuang Xiao, Chi Sun Poon, Philip S. Yu, Irwin King — currently under review at* ***Nature Communications***.
+> *Shuai Zou\*, Zhihan Guo\*, Yankai Chen, Jianzhuang Xiao, Stergios-Aristoteles Mitoulis, Chi Sun Poon, Philip S. Yu, Irwin King — currently under review at* ***Communications AI & Computing***.
 
 ---
 
