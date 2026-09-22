@@ -395,7 +395,7 @@ If you use MACS-BiC, the released dataset, or any of the prompts in your work, p
   author  = {Zou, Shuai and Guo, Zhihan and Chen, Yankai and Xiao, Jianzhuang
              and Mitoulis, Stergios-Aristoteles and Poon, Chi Sun
              and Yu, Philip S. and King, Irwin},
-  journal = {Nature Communications},
+  journal = {Communications of AI and Computing},
   year    = {2026},
   note    = {Under review}
 }
