@@ -28,7 +28,7 @@ Applied to **670 full-text articles**, MACS-BiC generated **3,529 raw formulatio
 
 > This repository accompanies the manuscript<br>
 > **"A multi-agent AI system maps the carbon–strength frontier of carbon-storing construction materials"**<br>
-> *Shuai Zou\*, Zhihan Guo\*, Yankai Chen, Jianzhuang Xiao, Stergios-Aristoteles Mitoulis, Chi Sun Poon, Philip S. Yu, Irwin King
+> Shuai Zou\*, Zhihan Guo\*, Yankai Chen, Jianzhuang Xiao, Stergios-Aristoteles Mitoulis, Chi Sun Poon, Philip S. Yu, Irwin King
 
 ---
 
