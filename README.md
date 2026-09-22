@@ -2,7 +2,7 @@
 
 # MACS-BiC
 
-### A Multi-Agent LLM System for High-Fidelity Knowledge Extraction in Sustainable Construction Materials
+### A Multi-Agent AI System for Mapping the Carbon鈥揝trength Frontier of Carbon-Storing Construction Materials
 
 *Autonomously transforming the fragmented, multi-modal scientific literature on biochar-in-construction into an analysis-ready structured dataset.*
 
@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 [![MinerU](https://img.shields.io/badge/Parser-MinerU-blueviolet)](https://github.com/opendatalab/mineru)
 [![Model](https://img.shields.io/badge/LLM-GPT--4o%20%2F%20Gemini%202.5%20Pro-10a37f)]()
-[![Corpus](https://img.shields.io/badge/Corpus-662%20full--text%20papers-success)]()
+[![Corpus](https://img.shields.io/badge/Corpus-670%20full--text%20papers-success)]()
 [![EFM](https://img.shields.io/badge/Exact%20Field%20Match-98.75%25-brightgreen)]()
 
 </div>
@@ -20,14 +20,14 @@
 
 ## 1. Overview
 
-The construction sector accounts for a substantial fraction of global CO<sub>2</sub> emissions, and **biochar**—a carbon-rich solid produced via biomass pyrolysis—has emerged as a uniquely dual-function admixture that simultaneously stores carbon and modifies composite performance. Despite explosive research growth, the quantitative evidence needed to resolve biochar's central **performance–decarbonization trade-off** is *fragmented across unstructured, multi-modal scientific literature*, with the majority of numerical data trapped inside figures and tables that are invisible to conventional text-mining pipelines.
+The construction sector accounts for a substantial fraction of global CO<sub>2</sub> emissions, and **biochar**鈥攁 carbon-rich solid produced via biomass pyrolysis鈥攈as emerged as a uniquely dual-function admixture that simultaneously stores carbon and modifies composite performance. Despite explosive research growth, the quantitative evidence needed to resolve biochar's central **performance鈥揹ecarbonization trade-off** is *fragmented across unstructured, multi-modal scientific literature*, with the majority of numerical data trapped inside figures and tables that are invisible to conventional text-mining pipelines.
 
 **MACS-BiC** (Multi-Agent Comprehension System for *Biochar in Construction*) is an AI-native framework that autonomously turns this fragmented literature into a high-fidelity, analysis-ready, structured dataset. It couples a **hierarchical multi-agent orchestration model** with a **domain-expert-designed 16-question extraction protocol** and an **integrated image-to-text module** that resolves the cross-modal evidence gap.
 
-Deployed on a curated corpus of **662 full-text articles**, MACS-BiC achieves an **overall exact field matching rate of 98.75%**, substantially surpassing four state-of-the-art commercial LLMs (GPT-5, GPT-4o, Gemini 2.5 Pro, DeepSeek 3.2) and all ablated variants.
+Applied to **670 full-text articles**, MACS-BiC generated **3,529 raw formulation-level records**, of which **3,220 curated records** were retained after quality control. On a manually verified benchmark, it achieves an **overall exact field matching rate of 98.75%**, outperforming four directly prompted foundation models, four ablated variants, five information-extraction baselines, and a Qwen3-VL-8B-Instruct configuration under the tested conditions.
 
 > This repository accompanies the manuscript<br>
-> **"A multi-agent LLM system for high-fidelity knowledge extraction in sustainable construction materials"**<br>
+> **"A multi-agent AI system maps the carbon鈥搒trength frontier of carbon-storing construction materials"**<br>
 > *Shuai Zou\*, Zhihan Guo\*, Yankai Chen, Jianzhuang Xiao, Stergios-Aristoteles Mitoulis, Chi Sun Poon, Philip S. Yu, Irwin King
 
 ---
@@ -35,10 +35,10 @@ Deployed on a curated corpus of **662 full-text articles**, MACS-BiC achieves an
 ## 2. Key Contributions
 
 - **AI-native framework for materials-science knowledge synthesis.** A hierarchical, multi-agent architecture that decomposes the analysis of every paper into parallelizable subtasks orchestrated through a stateless task channel.
-- **Domain-expert-driven extraction protocol.** A 16-question, dependency-aware questionnaire that traces the causal pathway *feedstock → pyrolysis → mixture design → multi-dimensional performance* and enforces schema-constrained, context-bound answers.
-- **Multi-modal evidence resolution.** An integrated image-to-text module converts figures and tables into semantic markdown tables, unlocking the >50% of quantitative evidence that resides in visual content.
+- **Domain-expert-driven extraction protocol.** A 16-question, dependency-aware questionnaire that traces the causal pathway *feedstock 鈫� pyrolysis 鈫� mixture design 鈫� multi-dimensional performance* and enforces schema-constrained, context-bound answers.
+- **Multi-modal evidence resolution.** An integrated image-to-text module converts figures and tables into semantic markdown tables, recovering quantitative evidence that is often inaccessible to conventional text-only extraction.
 - **Closed-loop quality control.** A hybrid rule-based + LLM-based Judger validates every record and triggers automatic re-execution on rejection, yielding the highest NaN F1-score (0.9655) of any evaluated system.
-- **The first high-fidelity, analysis-ready dataset on biochar-in-construction.** Structured Q&A for 662 papers spanning feedstock, pyrolysis, formulation, and 11 performance dimensions—enabling the first quantitative, statistical interrogation of biochar's performance–decarbonization trade-off.
+- **A high-fidelity, analysis-ready formulation-level resource.** Quality-controlled structured records from 670 full-text papers connect feedstock, pyrolysis, formulation, and performance variables, enabling a quantitative interrogation of biochar's performance鈥揹ecarbonization trade-off.
 
 ---
 
@@ -72,41 +72,49 @@ MACS-BiC is organized as **two managerial agents** that orchestrate **three spec
 |---|---|---|
 | 1 | **Retrieval** | Executes structured Boolean queries on the Web of Science API; normalizes results to a canonical schema; deduplicates by DOI + title similarity. |
 | 2 | **Paper Download** | Resolves DOIs against institutional subscriptions and open-access repositories; logs unauthorized failures and excludes them. |
-| 3 | **Paper Parsing** | Four-phase MinerU pipeline: PDF validation (PyMuPDF) → layout/figure/table extraction → reading-order repair → emit Markdown + JPG assets. |
+| 3 | **Paper Parsing** | Four-phase MinerU pipeline: PDF validation (PyMuPDF) 鈫� layout/figure/table extraction 鈫� reading-order repair 鈫� emit Markdown + JPG assets. |
 | 4 | **Image-to-Text** | Gemini-2.5-Pro converts figures to semantic Markdown tables (preserving headers, units, values) or one-sentence descriptions for non-chart images. |
-| 5 | **Carbon Footprint** | Standardized LCA: `f(cf) = Σ_k m_k · CEF_k` over cement, slag, fly ash, silica fume, biochar, fiber, water, sand, gravel, BDA, admixture, other. |
+| 5 | **Carbon Footprint** | Standardized LCA: `f(cf) = 危_k m_k 路 CEF_k` over cement, slag, fly ash, silica fume, biochar, fiber, water, sand, gravel, BDA, admixture, other. |
 | 6 | **Dataset Construction** | Enforces schema constraints; merges multi-turn answers from parallel experimental groups; canonizes units; validates data types; emits the final dataset. |
 
 ---
 
 ## 4. Headline Results
 
-### 4.1 Extraction performance vs. commercial LLMs and ablated variants
+### 4.1 Extraction performance across evaluated configurations
 
-Evaluated on a manually verified gold-standard dataset of **40 samples × 160 data points** drawn from 7 peer-reviewed articles (10% of the corpus). Numbers are reported as **EFM(%) / MAE** for numerical fields, **EFM(%) / F1-macro** for category, and **F1** for NaN. **Overall** is the composite Exact Field Matching rate.
+Evaluated on a manually verified gold-standard dataset of **40 formulation-level records 脳 160 fields** drawn from 7 peer-reviewed articles. Numbers are reported as **EFM(%) / MAE** for numerical fields, **EFM(%) / Macro-F1** for Category, and **F1** for NaN. **Overall** is the composite Exact Field Matching rate. The benchmark contains 30 verified missing numerical values.
 
-| Model | Category | Density | Strength | Slump | NaN F1 | **Overall EFM** |
+| Configuration | Category | Density | Strength | Slump | NaN F1 | **Overall EFM** |
 |---|---|---|---|---|---|---|
 | **MACS-BiC (full)** | **100 / 1.0000** | **100 / 1.333** | **100 / 0.106** | **95.0 / 0.462** | **0.9655** | **98.750** |
-| MACS-BiC — w/o image-to-text | 100 / 1.0000 | 67.5 / 1756 | 42.5 / 77.16 | 75.0 / 106.1 | 0.5660 | 71.250 |
-| MACS-BiC — w/o format normalization | 15.0 / 0.1176 | 30.0 / 2558 | 35.0 / 65.03 | 52.5 / 143.0 | 0.4427 | 33.125 |
-| MACS-BiC — w/o loop | 100 / 1.0000 | 97.5 / 59.60 | 100 / 0.106 | 92.5 / 0.462 | 0.9310 | 97.500 |
-| MACS-BiC — w/o notes | 87.0 / 0.8750 | 92.5 / 300.0 | 87.5 / 16.92 | 90.0 / 21.00 | 0.7671 | 89.375 |
+| MACS-BiC 鈥� w/o image-to-text | 100 / 1.0000 | 67.5 / 1756 | 42.5 / 77.16 | 75.0 / 106.1 | 0.5660 | 71.250 |
+| MACS-BiC 鈥� w/o format normalization | 15.0 / 0.1176 | 30.0 / 2558 | 35.0 / 65.03 | 52.5 / 143.0 | 0.4427 | 33.125 |
+| MACS-BiC 鈥� w/o loop | 100 / 1.0000 | 97.5 / 59.60 | 100 / 0.106 | 92.5 / 0.462 | 0.9310 | 97.500 |
+| MACS-BiC 鈥� w/o notes | 87.5 / 0.8750 | 92.5 / 300.0 | 87.5 / 16.92 | 90.0 / 21.00 | 0.7671 | 89.375 |
 | DeepSeek 3.2 | 100 / 1.0000 | 67.5 / 1756 | 27.5 / 81.10 | 67.5 / 124.0 | 0.5556 | 65.625 |
 | Gemini 2.5 Pro | 95.0 / 0.9268 | 62.5 / 1767 | 52.5 / 28.25 | 72.5 / 14.27 | 0.6923 | 70.625 |
 | GPT-5 | 95.0 / 0.9048 | 67.5 / 1756 | 45.0 / 42.00 | 70.0 / 112.8 | 0.6186 | 69.375 |
-| GPT-4o | 82.5 / 0.8049 | 62.5 / 179.9 | 42.5 / 7.918 | 65.0 / 19.38 | 0.8956 | 63.125 |
+| GPT-4o | 82.5 / 0.8049 | 62.5 / 179.9 | 42.5 / 7.918 | 65.0 / 19.38 | 0.8955 | 63.125 |
+| ChatExtract | 0.0 / 0.0000 | 67.5 / 1496 | 60.0 / 40.34 | 52.5 / 177.5 | 0.4511 | 45.000 |
+| Tool-equalized single-agent | 0.0 / 0.0000 | 27.5 / 3469 | 30.0 / 91.09 | 35.0 / 237.8 | 0.3390 | 23.125 |
+| nanoMINER | 0.0 / 0.0000 | 37.5 / 3084 | 35.0 / 90.03 | 27.5 / 237.8 | 0.3176 | 25.000 |
+| MERMaid | 2.5 / 0.0217 | 40.0 / 3000 | 37.5 / 81.08 | 35.0 / 237.8 | 0.3593 | 28.750 |
+| ReactionSeek | 0.0 / 0.0000 | 25.0 / 3553 | 22.5 / 97.58 | 35.0 / 237.8 | 0.3315 | 20.625 |
+| Qwen3-VL-8B-Instruct | 100 / 1.0000 | 45.0 / 2456 | 37.5 / 61.05 | 50.0 / 80.80 | 0.4835 | 58.125 |
 
 The ablation study quantifies two pivotal findings:
 
-1. **The image-to-text module is the central bottleneck.** Disabling it collapses density MAE from **1.333 → 1756** and strength EFM from **100% → 42.5%**, validating that the primary barrier to high-fidelity dataset construction is the cross-modal gap, not natural-language understanding.
-2. **Format normalization is essential for categorical understanding.** Removing it drops the category F1-macro from **1.0000 → 0.1176**, even though the underlying LLM is identical—confirming that *parsing*, not *reasoning*, dominates categorical fidelity.
+1. **The image-to-text module is the central bottleneck.** Disabling it collapses density MAE from **1.333 鈫� 1756** and strength EFM from **100% 鈫� 42.5%**, validating that the primary barrier to high-fidelity dataset construction is the cross-modal gap, not natural-language understanding.
+2. **Format normalization is essential for categorical understanding.** Removing it drops the category F1-macro from **1.0000 鈫� 0.1176**, even though the underlying LLM is identical鈥攃onfirming that *parsing*, not *reasoning*, dominates categorical fidelity.
 
-### 4.2 Knowledge synthesized from the 662-paper corpus
+The five information-extraction baselines achieved overall EFM rates of **20.625鈥�45.000%**, with ChatExtract performing best. The open-weight **Qwen3-VL-8B-Instruct** configuration reached **58.125%** overall EFM. These configurations received question-level prompts and were converted into formulation-level records using a shared deterministic parser; their scores therefore reflect both extraction performance and the task specification.
 
-- **Median biochar dosage of only 1.40 wt.%**, with 75% of studies using <5.9% — quantitatively confirming the field's conservative, strength-loss-averse paradigm.
-- **A statistically significant strength penalty at high substitution:** mean compressive strength deteriorates from **41.7 MPa (0–5 wt.%)** to **13.3 MPa (>20 wt.%)**.
-- A multi-parameter assessment combining mechanical, durability, *and* environmental metrics covers a mere **0.12%** of studies, exposing the field's siloed evaluation landscape.
+### 4.2 Knowledge synthesized from the 670-paper corpus
+
+- **Median biochar dosage of only 1.00 wt.%**, with 75% of the 3,126 valid formulation records using 鈮�5.00 wt.% 鈥� quantitatively confirming the field's conservative, strength-loss-averse paradigm.
+- **A pronounced strength penalty at high substitution:** mean compressive strength declines from **44.1 MPa (0鈥�2 wt.%)** to **13.9 MPa (>20 wt.%)**; intermediate groups are 42.3 MPa (2鈥�5 wt.%), 33.5 MPa (5鈥�10 wt.%), and 31.9 MPa (10鈥�20 wt.%).
+- A multi-parameter assessment combining mechanical, durability, *and* environmental metrics covers a mere **0.12% of formulation records** (4 of 3,220), exposing the field's siloed evaluation landscape.
 
 See the manuscript and `Supplementary Data 4` for the complete dataset and figure-level analyses.
 
@@ -116,57 +124,57 @@ See the manuscript and `Supplementary Data 4` for the complete dataset and figur
 
 ```
 MACS-BiC/
-├── README.md
-├── images/
-│   ├── agent1.pdf                # Figure 1 (vector, manuscript-style)
-│   └── agent1.png                # Raster preview for GitHub README
-└── agent/
-    ├── extraction.py                       # Production entry point (legacy / scripted run)
-    ├── extraction_without_format.py        # Ablation: w/o format normalization
-    ├── extraction_without_image_translation.py
-    ├── extraction_without_loop.py          # Ablation: single-pass extraction
-    ├── extraction_without_notes.py         # Ablation: w/o domain glossary / notes
-    │
-    ├── prompt/                             # Prompt library (Stage 1 + Stage 2, ablations)
-    │   ├── prompt1.py                      # Stage 1: triage / preliminary identification
-    │   ├── prompt1_200.py
-    │   ├── prompt1_pdf.py
-    │   ├── prompt1_without_format.py
-    │   ├── prompt1_without_notes.py
-    │   ├── prompt2.py                      # Stage 2: context-aware comprehensive extraction
-    │   ├── prompt2_200.py
-    │   ├── prompt2_200_20250917.py
-    │   ├── prompt2_200_20250918.py
-    │   ├── prompt2_200_20250918_2.py
-    │   ├── prompt2_without_format.py
-    │   ├── prompt2_without_image_translator.py
-    │   └── prompt2_without_notes.py
-    │
-    ├── utils/
-    │   └── utils.py                        # Extraction pipeline, image-to-text, schema enforcement
-    │
-    ├── tools/
-    │   └── carbon_footprint_calculating.docx
-    │
-    └── multi_agent/                        # Modern, modular multi-agent implementation
-        ├── base_agent.py                   # ReAct base agent
-        ├── llm_client.py                   # Unified GPT-4o / Gemini wrapper
-        ├── mcp_tool.py                     # @mcp_tool decorator + registry
-        ├── multi_agent_system.py           # Top-level façade
-        ├── system_usage_example.py         # End-to-end CLI entry point
-        ├── agents/
-        │   ├── planner.py
-        │   ├── coordinator.py
-        │   ├── paper_reader.py
-        │   ├── data_writer.py
-        │   └── judger.py
-        └── tools/
-            ├── retrieval.py
-            ├── paper_download.py
-            ├── paper_parsing.py            # MinerU subprocess wrapper
-            ├── image_to_text.py            # Gemini-2.5-Pro figure → markdown
-            ├── carbon_footprint.py         # LCA formula from Supplementary Note 3.5
-            └── dataset_construction.py     # JSONL → canonical Excel
+鈹溾攢鈹€ README.md
+鈹溾攢鈹€ images/
+鈹�   鈹溾攢鈹€ roadmap.pdf               # Figure 1 (vector, manuscript-style)
+鈹�   鈹斺攢鈹€ roadmap.png               # Raster preview for GitHub README
+鈹斺攢鈹€ agent/
+    鈹溾攢鈹€ extraction.py                       # Production entry point (legacy / scripted run)
+    鈹溾攢鈹€ extraction_without_format.py        # Ablation: w/o format normalization
+    鈹溾攢鈹€ extraction_without_image_translation.py
+    鈹溾攢鈹€ extraction_without_loop.py          # Ablation: single-pass extraction
+    鈹溾攢鈹€ extraction_without_notes.py         # Ablation: w/o domain glossary / notes
+    鈹�
+    鈹溾攢鈹€ prompt/                             # Prompt library (Stage 1 + Stage 2, ablations)
+    鈹�   鈹溾攢鈹€ prompt1.py                      # Stage 1: triage / preliminary identification
+    鈹�   鈹溾攢鈹€ prompt1_200.py
+    鈹�   鈹溾攢鈹€ prompt1_pdf.py
+    鈹�   鈹溾攢鈹€ prompt1_without_format.py
+    鈹�   鈹溾攢鈹€ prompt1_without_notes.py
+    鈹�   鈹溾攢鈹€ prompt2.py                      # Stage 2: context-aware comprehensive extraction
+    鈹�   鈹溾攢鈹€ prompt2_200.py
+    鈹�   鈹溾攢鈹€ prompt2_200_20250917.py
+    鈹�   鈹溾攢鈹€ prompt2_200_20250918.py
+    鈹�   鈹溾攢鈹€ prompt2_200_20250918_2.py
+    鈹�   鈹溾攢鈹€ prompt2_without_format.py
+    鈹�   鈹溾攢鈹€ prompt2_without_image_translator.py
+    鈹�   鈹斺攢鈹€ prompt2_without_notes.py
+    鈹�
+    鈹溾攢鈹€ utils/
+    鈹�   鈹斺攢鈹€ utils.py                        # Extraction pipeline, image-to-text, schema enforcement
+    鈹�
+    鈹溾攢鈹€ tools/
+    鈹�   鈹斺攢鈹€ carbon_footprint_calculating.docx
+    鈹�
+    鈹斺攢鈹€ multi_agent/                        # Modern, modular multi-agent implementation
+        鈹溾攢鈹€ base_agent.py                   # ReAct base agent
+        鈹溾攢鈹€ llm_client.py                   # Unified GPT-4o / Gemini wrapper
+        鈹溾攢鈹€ mcp_tool.py                     # @mcp_tool decorator + registry
+        鈹溾攢鈹€ multi_agent_system.py           # Top-level fa莽ade
+        鈹溾攢鈹€ system_usage_example.py         # End-to-end CLI entry point
+        鈹溾攢鈹€ agents/
+        鈹�   鈹溾攢鈹€ planner.py
+        鈹�   鈹溾攢鈹€ coordinator.py
+        鈹�   鈹溾攢鈹€ paper_reader.py
+        鈹�   鈹溾攢鈹€ data_writer.py
+        鈹�   鈹斺攢鈹€ judger.py
+        鈹斺攢鈹€ tools/
+            鈹溾攢鈹€ retrieval.py
+            鈹溾攢鈹€ paper_download.py
+            鈹溾攢鈹€ paper_parsing.py            # MinerU subprocess wrapper
+            鈹溾攢鈹€ image_to_text.py            # Gemini-2.5-Pro figure 鈫� markdown
+            鈹溾攢鈹€ carbon_footprint.py         # LCA formula from Supplementary Note 3.5
+            鈹斺攢鈹€ dataset_construction.py     # JSONL 鈫� canonical Excel
 ```
 
 ---
@@ -175,12 +183,12 @@ MACS-BiC/
 
 ### 6.1 Prerequisites
 
-- Python ≥ 3.10
+- Python 鈮� 3.10
 - A GPU is recommended if you intend to run MinerU with its VLM backends; the default `pipeline` backend is CPU-friendly.
 - API access:
-  - **OpenAI / GPT-4o** (or a compatible proxy) — for every LLM-driven agent.
-  - **Gemini 2.5 Pro** — for the Image-to-Text tool (can share the OpenAI-compatible proxy URL).
-  - **Web of Science (Starter or Expanded) API** — for the Retrieval tool.
+  - **OpenAI / GPT-4o** (or a compatible proxy) 鈥� for every LLM-driven agent.
+  - **Gemini 2.5 Pro** 鈥� for the Image-to-Text tool (can share the OpenAI-compatible proxy URL).
+  - **Web of Science (Starter or Expanded) API** 鈥� for the Retrieval tool.
 
 ### 6.2 Install
 
@@ -220,7 +228,7 @@ python -m agent.multi_agent.system_usage_example \
 
 ### 7.2 End-to-end pipeline (programmatic mode)
 
-Bypasses the ReAct loop and invokes each Coordinator stage directly — ideal for CI and unit tests.
+Bypasses the ReAct loop and invokes each Coordinator stage directly 鈥� ideal for CI and unit tests.
 
 ```python
 from agent.multi_agent.multi_agent_system import MultiAgentSystem
@@ -246,12 +254,12 @@ The `workspace` folder will be populated as follows:
 
 ```
 run_biochar/
-├── pdfs/                  # downloaded full-text PDFs
-├── parsed/                # MinerU markdown + figures, one folder per DOI
-├── image_text/            # Gemini chart-to-table JSONL cache
-├── results1/              # Stage-1 (triage) answers cache
-├── extractions/           # per-DOI JSONL Q&A (canonical schema)
-└── dataset.xlsx           # final analysis-ready spreadsheet
+鈹溾攢鈹€ pdfs/                  # downloaded full-text PDFs
+鈹溾攢鈹€ parsed/                # MinerU markdown + figures, one folder per DOI
+鈹溾攢鈹€ image_text/            # Gemini chart-to-table JSONL cache
+鈹溾攢鈹€ results1/              # Stage-1 (triage) answers cache
+鈹溾攢鈹€ extractions/           # per-DOI JSONL Q&A (canonical schema)
+鈹斺攢鈹€ dataset.xlsx           # final analysis-ready spreadsheet
 ```
 
 ### 7.3 Just the carbon-footprint tool
@@ -275,9 +283,9 @@ print(out["data"]["f_cf"], "kg CO2-eq per unit mass")
 
 ## 8. The 16-Question Extraction Protocol
 
-Co-designed with domain experts, the protocol traces the **causal chain** `feedstock → pyrolysis → mixture design → performance`. It is enforced through two stages with strict schema constraints, dynamic branching, and explicit abstention.
+Co-designed with domain experts, the protocol traces the **causal chain** `feedstock 鈫� pyrolysis 鈫� mixture design 鈫� performance`. It is enforced through two stages with strict schema constraints, dynamic branching, and explicit abstention.
 
-### Stage 1 — Triage (binary)
+### Stage 1 鈥� Triage (binary)
 
 | # | Question | Output |
 |---|---|---|
@@ -287,28 +295,28 @@ Co-designed with domain experts, the protocol traces the **causal chain** `feeds
 | 2.3 | Is fire-resistance performance included? | yes / no |
 | 2.4 | Is carbon footprint analyzed? | yes / no |
 
-### Stage 2 — Context-aware comprehensive extraction (pre-conditioned on the Stage-1 categories)
+### Stage 2 鈥� Context-aware comprehensive extraction (pre-conditioned on the Stage-1 categories)
 
 | # | Question | Output schema |
 |---|---|---|
 | 3.1 | Feedstock / biomass types | comma-separated short phrases |
-| 3.2 | Feedstock classification (a–h) | letter list |
-| 3.3 | Pyrolysis temperature | integer °C |
-| 3.4 | Biochar role / function (a–d) | letter |
-| 3.5 | Type of biochar-integrated material (a–i) | letter |
+| 3.2 | Feedstock classification (a鈥揾) | letter list |
+| 3.3 | Pyrolysis temperature | integer 掳C |
+| 3.4 | Biochar role / function (a鈥揹) | letter |
+| 3.5 | Type of biochar-integrated material (a鈥搃) | letter |
 | 3.6 | Biochar / total-mixture mass ratio | float (3 d.p.) |
 | 3.7 | Biochar / cementitious mass ratio | float (2 d.p.) |
-| 3.8 | Hardened density | integer kg/m³, ± SD |
-| 3.9 | 28-day compressive strength | float MPa (1 d.p.), ± SD |
-| 3.10 | Flow-table / slump | integer mm, ± SD |
-| 3.11 | Thermal conductivity (28 d) | float W/(m·K), 2 d.p., ± SD |
+| 3.8 | Hardened density | integer kg/m鲁, 卤 SD |
+| 3.9 | 28-day compressive strength | float MPa (1 d.p.), 卤 SD |
+| 3.10 | Flow-table / slump | integer mm, 卤 SD |
+| 3.11 | Thermal conductivity (28 d) | float W/(m路K), 2 d.p., 卤 SD |
 
 Every Stage-2 prompt encapsulates six standardized components: **task instruction**, **domain glossary**, **schema constraints**, **machine-readable mandate**, **citation binding**, and **explicit `nan` abstention policy**. Decoding is configured for determinism with reasoning effort set to `medium`.
 
 The dynamic execution engine adds two mechanisms on top:
 
 - **One-to-many branching:** parallel question threads spawned per experimental entity (e.g. multiple biochar types within one paper).
-- **Combinatorial permutation:** a Cartesian product is taken over independent variables (e.g. 2 biochar types × 3 cement-replacement ratios), so every data point is uniquely bound to its precise context.
+- **Combinatorial permutation:** a Cartesian product is taken over independent variables (e.g. 2 biochar types 脳 3 cement-replacement ratios), so every data point is uniquely bound to its precise context.
 
 ---
 
@@ -320,10 +328,12 @@ The gold-standard dataset, every model's predictions, and the full per-metric br
 |---|---|
 | `Supplementary Data 1` | 801 retrieved Web of Science records |
 | `Supplementary Data 2` | Bibliometric overview of the retrieved literature |
-| `Supplementary Data 3` | Screening strategy and final 662-DOI corpus |
+| `Supplementary Data 3` | Screening strategy and final 670-DOI corpus |
 | `Supplementary Data 4` | **Final structured dataset extracted by MACS-BiC** |
 | `Supplementary Data 5` | Gold standard vs. each model's extracted data |
 | `Supplementary Data 6` | Full evaluation results per metric |
+| `Supplementary Data 7` | Raw outputs from the five information-extraction baselines and Qwen3-VL configuration |
+| `Parsing_audit` | Deterministic conversion and alignment decisions for baseline outputs |
 
 To re-run the four ablations:
 
@@ -350,9 +360,9 @@ python agent/extraction_without_notes.py ...
 Evaluation metrics are formally defined in **Supplementary Note 8**:
 
 - **Macro-averaged F1-score** for categorical fields (eliminates class-imbalance bias).
-- **R² and MAE** for numerical fields, with a penalty term that maps `predicted = nan` on a valid target to `3 × true_value` (penalises silent omission).
+- **R虏 and MAE** for numerical fields, with a penalty term that maps `predicted = nan` on a valid target to `3 脳 true_value` (penalises silent omission).
 - **NaN F1-score** for anti-hallucination capability on absent evidence.
-- **Exact Field Matching (EFM)**: case-/whitespace-insensitive string equality for categorical fields, relative-error ≤ 5% for numerical fields.
+- **Exact Field Matching (EFM)**: case-/whitespace-insensitive string equality for categorical fields, relative-error 鈮� 5% for numerical fields.
 
 ---
 
@@ -370,7 +380,7 @@ TS = (concrete OR mortar OR paste OR paving brick OR permeable brick
       OR composite materials OR 3D printing materials OR coating)
 ```
 
-Execution date: **2025-08-13**, English-only, no other restrictions. Funnel: 801 records → 781 with DOI → 763 retrievable → 676 non-review → 662 parseable & within token budget.
+Execution date: **2025-08-13**, English-only, no other restrictions. Funnel: 801 records 鈫� 789 with DOI 鈫� 771 with accessible full text 鈫� 684 after review-article filtering 鈫� 670 parseable and within the 30,000-token budget.
 
 ---
 
@@ -380,10 +390,11 @@ If you use MACS-BiC, the released dataset, or any of the prompts in your work, p
 
 ```bibtex
 @article{zou2026macsbic,
-  title   = {A multi-agent LLM system for high-fidelity knowledge extraction in
-             sustainable construction materials},
+  title   = {A multi-agent AI system maps the carbon--strength frontier of
+             carbon-storing construction materials},
   author  = {Zou, Shuai and Guo, Zhihan and Chen, Yankai and Xiao, Jianzhuang
-             and Poon, Chi Sun and Yu, Philip S. and King, Irwin},
+             and Mitoulis, Stergios-Aristoteles and Poon, Chi Sun
+             and Yu, Philip S. and King, Irwin},
   journal = {Nature Communications},
   year    = {2026},
   note    = {Under review}
