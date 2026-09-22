@@ -6,7 +6,7 @@
 
 *Autonomously transforming the fragmented, multi-modal scientific literature on biochar-in-construction into an analysis-ready structured dataset.*
 
-[![Paper](https://img.shields.io/badge/Paper-Nature%20Communications%20(under%20review)-1f6feb)]()
+[![Paper](https://img.shields.io/badge/Paper-Communications%20of%20AI%20and%20Computing(under%20review)-1f6feb)]()
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 [![MinerU](https://img.shields.io/badge/Parser-MinerU-blueviolet)](https://github.com/opendatalab/mineru)
